@@ -56,8 +56,21 @@ mem8 is a modern web application built with React, Vite, and Firebase. This proj
 
 ### Firebase Configuration
 
-1. Add your Firebase configuration to GitHub Secrets as `FIREBASE_CONFIG`.
-2. Ensure the `firebase.js` file uses environment variables for secure configuration.
+1. Copy the `.env.example` file to `.env`:
+
+   ```bash
+   cp .env.example .env
+   ```
+
+2. Get your Firebase configuration from [Firebase Console](https://console.firebase.google.com/):
+
+   - Go to Project Settings → Your apps → SDK setup and configuration
+   - Copy each config value into your `.env` file
+
+3. For GitHub Actions deployment, add the Firebase secrets to your repository:
+   - See `GITHUB_SECRETS_SETUP.md` for detailed instructions
+   - Add 6 individual Firebase secrets (VITE_FIREBASE_API_KEY, etc.)
+   - Add TOKEN secret for GitHub Pages deployment
 
 ### CI/CD Workflows
 

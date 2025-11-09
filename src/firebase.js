@@ -21,17 +21,21 @@ import {
 
 // --- MODIFICATIONS START ---
 
-// 1. Get the config from environment variables.
-//    import.meta.env is for Vite. Use process.env for Create React App/Next.js.
-const firebaseConfigString = import.meta.env.VITE_FIREBASE_CONFIG;
+// Build the Firebase config from individual environment variables
+// This approach is more robust than parsing a JSON string
+const firebaseConfig = {
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID
+};
 
-// 2. Validate that the environment variable exists.
-if (!firebaseConfigString) {
-  throw new Error("Firebase config not found in environment variables.");
+// Validate that required environment variables exist
+if (!firebaseConfig.apiKey || !firebaseConfig.projectId) {
+  throw new Error("Firebase configuration is incomplete. Please check your environment variables.");
 }
-
-// 3. Parse the Firebase config string back into a JSON object.
-const firebaseConfig = JSON.parse(firebaseConfigString);
 
 // --- MODIFICATIONS END ---
 
