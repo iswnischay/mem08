@@ -16,7 +16,9 @@ const router = createBrowserRouter([
     path: '/home',
     element: <Home />,
   },
-])
+], {
+  basename: '/mem08/'  // Add basename for GitHub Pages deployment
+})
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <div style={{ backgroundColor: '#181818', color: '#ffffff', minHeight: '100vh', width: '100%' }}>
