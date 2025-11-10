@@ -1,0 +1,44 @@
+{
+  "name": "mem8 Development Environment",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:20",
+  
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+  
+  "forwardPorts": [5173],
+  
+  "portsAttributes": {
+    "5173": {
+      "label": "mem8 Web App",
+      "onAutoForward": "notify"
+    }
+  },
+  
+  "postCreateCommand": "npm install",
+  
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "bradlc.vscode-tailwindcss",
+        "dsznajder.es7-react-js-snippets"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+      }
+    }
+  },
+  
+  "remoteEnv": {
+    "VITE_FIREBASE_API_KEY": "${localEnv:VITE_FIREBASE_API_KEY}",
+    "VITE_FIREBASE_AUTH_DOMAIN": "${localEnv:VITE_FIREBASE_AUTH_DOMAIN}",
+    "VITE_FIREBASE_PROJECT_ID": "${localEnv:VITE_FIREBASE_PROJECT_ID}",
+    "VITE_FIREBASE_STORAGE_BUCKET": "${localEnv:VITE_FIREBASE_STORAGE_BUCKET}",
+    "VITE_FIREBASE_MESSAGING_SENDER_ID": "${localEnv:VITE_FIREBASE_MESSAGING_SENDER_ID}",
+    "VITE_FIREBASE_APP_ID": "${localEnv:VITE_FIREBASE_APP_ID}"
+  }
+}
